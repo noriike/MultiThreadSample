@@ -33,6 +33,7 @@
             this.btnTask = new System.Windows.Forms.Button();
             this.btnLambda = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnAsync = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnThread
@@ -84,11 +85,22 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "label1";
             // 
+            // btnAsync
+            // 
+            this.btnAsync.Location = new System.Drawing.Point(13, 201);
+            this.btnAsync.Name = "btnAsync";
+            this.btnAsync.Size = new System.Drawing.Size(75, 23);
+            this.btnAsync.TabIndex = 5;
+            this.btnAsync.Text = "asyncawait";
+            this.btnAsync.UseVisualStyleBackColor = true;
+            this.btnAsync.Click += new System.EventHandler(this.btnAsync_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Controls.Add(this.btnAsync);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnLambda);
             this.Controls.Add(this.btnTask);
@@ -109,6 +121,7 @@
         private System.Windows.Forms.Button btnTask;
         private System.Windows.Forms.Button btnLambda;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnAsync;
     }
 }
 

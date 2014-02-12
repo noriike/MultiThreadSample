@@ -66,6 +66,24 @@ namespace MultiThreadSample
                                 .ContinueWith<int>(t => DoworkReturn2(t.Result),TaskScheduler.FromCurrentSynchronizationContext());
             
         }
+
+        /// <summary>
+        /// c#5.0 async await
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void btnAsync_Click(object sender, EventArgs e)
+        {
+            Task<int> t = Task.Run<int>(() => DoworkReturn());
+            //ここから下すべて、継続タスク
+            //UIスレッドでawaitした場合、継続タスクはUIスレッドで実行される
+            int result = await t;//awaitはTaskから結果を取り出す
+            DoworkReturn2(result);
+
+            //さらに短く書くこともできる
+            int result2 = await Task.Run<int>(() => DoworkReturn());
+            DoworkReturn2(result2);
+        }
         
         /// <summary>
         /// lambda
@@ -144,7 +162,9 @@ namespace MultiThreadSample
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+        
         }
+
+
     }
 }
