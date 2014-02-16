@@ -23,7 +23,7 @@ namespace MultiThreadSampleWeb
         }
 
         /// <summary>
-        /// async awaitで非同期処理
+        /// async awaitでPageLoad時に非同期処理
         /// </summary>
         /// <returns></returns>
         public async Task LoadSomeData()
@@ -46,8 +46,14 @@ namespace MultiThreadSampleWeb
 
         protected async void Button2_Click(object sender, EventArgs e)
         {
-            int result = await Task.Run<int>(() => DoworkReturnTyp2());
-            DoworkReturn3(result);
+            var result2 = Task.Run<int>(() => DoworkReturn());
+            var result = Task.Run<int>(() => DoworkReturnTyp2());
+
+            //すべての処理が完了するまで待機
+            await Task.WhenAll(result2, result);
+
+            DoworkReturn2(result2.Result);
+            DoworkReturn3(result.Result);
         }
 
         /// <summary>
